@@ -31,6 +31,8 @@ def verify():
     
     sig = content['sig']
     payload = content['payload']
+    
+    payloadField = ['message', 'pk', 'platform']
     message = payload['message']
     pk = payload['pk']
     platform = payload['platform']
