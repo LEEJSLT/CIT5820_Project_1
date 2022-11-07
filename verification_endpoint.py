@@ -26,15 +26,15 @@ def verify():
     platform = payload['platform'] # get the platform from payload
     
     # Json data check - if keys do not match requirement
-    mainField = ['sig', 'payload']
-    for field in mainField:
-        if field not in mainField.keys():
-            return jsonify(False)
+    # mainField = ['sig', 'payload']
+    # for field in mainField:
+    #     if field not in mainField.keys():
+    #         return jsonify(False)
 
-    payloadField = ['message', 'pk', 'platform']
-    for field in payloadField:
-        if field not in payloadField.keys():
-            return jsonify(False)
+    # payloadField = ['message', 'pk', 'platform']
+    # for field in payloadField:
+    #     if field not in payloadField.keys():
+    #         return jsonify(False)
 
     # Verifying an endpoint for verifying signatures
     payload = json.dumps(payload)
