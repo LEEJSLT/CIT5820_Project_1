@@ -37,11 +37,10 @@ def verify():
             return jsonify(False)
 
     # Verifying an endpoint for verifying signatures
-
     payload = json.dumps(payload)
 
     #Check if signature is valid
-
+    # check on Ethereum platform
     if platform == 'Ethereum':
         eth_encoded_msg = eth_account.messages.encode_defunct(text=payload)
         
@@ -49,7 +48,7 @@ def verify():
             result = True
         else:
             result = False
-    
+    # check on Algorand platform
     if platform == 'Algorand':
         if algosdk.util.verify_bytes(payload.encode('utf-8'), sig, pk):
             result = True
