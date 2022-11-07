@@ -18,32 +18,25 @@ app.url_map.strict_slashes = False
 @app.route('/verify', methods=['GET','POST'])
 def verify():
     content = request.get_json(silent=True)
+    sig = content['sig'] # get the signature information
+    payload = content['payload'] # get the payload list
+
+    message = payload['message'] # get the message from payload
+    pk = payload['pk'] # get the public key from payload
+    platform = payload['platform'] # get the platform from payload
     
+    # Json data check - if keys do not match requirement
+    mainField = ['sig', 'payload']
+    for field in mainField:
+        if field not in mainField.keys():
+            return jsonify(False)
 
+    payloadField = ['message', 'pk', 'platform']
+    for field in payloadField:
+        if field not in payloadField.keys():
+            return jsonify(False)
 
-    sig = content['sig']
-    payload = content['payload']
-
-
-
-    message = payload['message']
-    pk = payload['pk']
-    platform = payload['platform']
-    
-    # mainField = ['sig', 'payload']
-    # for field in mainField:
-    #     if field not in mainField.keys():
-    #         return jsonify(False)
-
-    # payloadField = ['message', 'pk', 'platform']
-    # for field in payloadField:
-    #     if field not in payloadField.keys():
-    #         return jsonify(False)
-    
-
-
-    # payloadField = ['message', 'pk', 'platform']
-
+    # Verifying an endpoint for verifying signatures
 
     payload = json.dumps(payload)
 
@@ -62,9 +55,7 @@ def verify():
             result = True
         else:
             result = False
-
-
-
+            
     # result = True #Should only be true if signature validates
     return jsonify(result)
 
