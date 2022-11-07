@@ -18,24 +18,30 @@ app.url_map.strict_slashes = False
 @app.route('/verify', methods=['GET','POST'])
 def verify():
     content = request.get_json(silent=True)
-    mainField = ['sig', 'payload']
-    payloadField = ['message', 'pk', 'platform']
+    
 
-    for field in mainField:
-        if field not in mainField.keys():
-            return jsonify(False)
-    
-    for field in payloadField:
-        if field not in payloadField.keys():
-            return jsonify(False)
-    
+    # mainField = ['sig', 'payload']
     sig = content['sig']
     payload = content['payload']
-    
-    payloadField = ['message', 'pk', 'platform']
+
+    # payloadField = ['message', 'pk', 'platform']
+
     message = payload['message']
     pk = payload['pk']
     platform = payload['platform']
+
+    # for field in mainField:
+    #     if field not in mainField.keys():
+    #         return jsonify(False)
+    
+    # for field in payloadField:
+    #     if field not in payloadField.keys():
+    #         return jsonify(False)
+    
+
+
+    # payloadField = ['message', 'pk', 'platform']
+
 
     payload = json.dumps(payload)
 
