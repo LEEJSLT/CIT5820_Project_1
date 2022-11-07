@@ -20,20 +20,22 @@ def verify():
     content = request.get_json(silent=True)
     
 
-    # mainField = ['sig', 'payload']
+
     sig = content['sig']
     payload = content['payload']
 
-    # payloadField = ['message', 'pk', 'platform']
+
 
     message = payload['message']
     pk = payload['pk']
     platform = payload['platform']
-
+    
+    # mainField = ['sig', 'payload']
     # for field in mainField:
     #     if field not in mainField.keys():
     #         return jsonify(False)
-    
+
+    # payloadField = ['message', 'pk', 'platform']
     # for field in payloadField:
     #     if field not in payloadField.keys():
     #         return jsonify(False)
